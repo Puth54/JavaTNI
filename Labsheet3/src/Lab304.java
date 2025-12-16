@@ -47,4 +47,3 @@ public class Lab304 {
         );
     }
 }
-//version ดีที่สุด
