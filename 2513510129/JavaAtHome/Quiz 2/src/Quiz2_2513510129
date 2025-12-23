@@ -1,0 +1,62 @@
+import java.util.Scanner;
+
+public class Quiz2_student_id {
+
+    public static boolean has_letter(String password) {
+        for (int i = 0; i < password.length(); i++) {
+            if (Character.isLetter(password.charAt(i))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean has_special_letter(String password) {
+        for (int i = 0; i < password.length(); i++) {
+            char ch = password.charAt(i);
+            if (!Character.isLetter(ch) && !Character.isDigit(ch)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean has_whitespace(String password) {
+        for (int i = 0; i < password.length(); i++) {
+            if (password.charAt(i) == ' ') {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static String create_blind_password(String password) {
+        String result = "";
+        result += password.charAt(0);
+
+        for (int i = 1; i < password.length() - 1; i++) {
+            result += "*";
+        }
+
+        result += password.charAt(password.length() - 1);
+        return result;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String password;
+
+        while (true) {
+            password = sc.nextLine();
+
+            if (!has_letter(password)) continue;
+            if (!has_special_letter(password)) continue;
+            if (has_whitespace(password)) continue;
+            if (password.length() <= 8) continue;
+
+            break;
+        }
+
+        System.out.println(create_blind_password(password));
+    }
+}
