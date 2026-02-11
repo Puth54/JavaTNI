@@ -1,0 +1,34 @@
+import javax.swing.JOptionPane;
+
+public class BorrowBookTest {
+
+    public static void main(String[] args) {
+
+        Book book = new Book("C# Programming", 5);
+
+        while (true) {
+
+            int choice = JOptionPane.showConfirmDialog(
+                    null,
+                    "ต้องการยืมหนังสือหรือไม่?"
+            );
+
+            if (choice != JOptionPane.YES_OPTION) {
+                JOptionPane.showMessageDialog(null, "END PROGRAM");
+                break;
+            }
+
+            if (book.getAvailableBook() == 0) {
+                JOptionPane.showMessageDialog(null, "No books available to borrow...");
+                break;
+            }
+
+            book.borrowBook();
+
+            System.out.println(
+                    "Borrowed 1 book, available " +
+                            book.getAvailableBook() + " books."
+            );
+        }
+    }
+}
